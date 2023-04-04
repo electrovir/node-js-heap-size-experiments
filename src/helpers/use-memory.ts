@@ -1,4 +1,4 @@
-import {AnyFunction, extractErrorMessage} from '@augment-vir/common';
+import {AnyFunction, extractErrorMessage, wait} from '@augment-vir/common';
 import {log} from '@augment-vir/node-js';
 import {createBigArray, pushIntoBigArray} from '../augments/big-array';
 import {getCurrentHeapUsageMB} from './heap';
@@ -9,7 +9,7 @@ const stuff: Record<any, AnyFunction> = {
     },
 };
 
-export function useTonsOfMemory(amountGB: number) {
+export async function useTonsOfMemory(amountGB: number) {
     const amountMB = amountGB * 1024;
 
     const filledUpArray = createBigArray<number>();
@@ -17,6 +17,7 @@ export function useTonsOfMemory(amountGB: number) {
     const startTime = Date.now();
     const startUsageGB = getCurrentHeapUsageMB();
 
+    await wait(1000);
     while (getCurrentHeapUsageMB() - startUsageGB < amountMB) {
         try {
             pushIntoBigArray(filledUpArray, i);

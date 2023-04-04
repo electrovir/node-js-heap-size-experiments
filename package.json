@@ -21,12 +21,12 @@
     "scripts": {
         "build": "virmator frontend build",
         "compile": "rm -rf dist && virmator compile",
-        "dev": "nodemon --quiet --exec node --max_old_space_size=1024 -r ts-node/register/transpile-only  src/entry-scripts/use-all-heap.ts",
+        "dev": "nodemon --quiet --exec node --max_old_space_size=1024 -r ts-node/register/transpile-only  src/entry-scripts/get-child-usage.ts",
         "docs:update": "virmator code-in-markdown",
         "format": "virmator format",
         "preview": "virmator frontend preview",
         "publish": "virmator publish \"npm run compile && npm run test:all\"",
-        "start": "node --max_old_space_size=1024 -r ts-node/register/transpile-only  src/entry-scripts/use-all-heap.ts",
+        "start": "node --max_old_space_size=1024 -r ts-node/register/transpile-only  src/entry-scripts/get-child-usage.ts",
         "test": "virmator test",
         "test:all": "npm run test:types && npm run test:coverage && npm run test:spelling && npm run test:format && npm run test:docs",
         "test:coverage": "npm run test coverage",
@@ -37,9 +37,13 @@
     },
     "dependencies": {
         "@augment-vir/common": "^13.2.3",
-        "@augment-vir/node-js": "^13.2.3"
+        "@augment-vir/node-js": "^13.2.3",
+        "express": "^4.18.2",
+        "express-cluster": "^0.0.5"
     },
     "devDependencies": {
+        "@types/express": "^4.17.17",
+        "@types/express-cluster": "^0.0.1",
         "@types/node": "^18.15.11",
         "nodemon": "^2.0.22",
         "prettier": "^2.8.7",
