@@ -1,0 +1,55 @@
+{
+    "name": "js-heap-size-experiments",
+    "version": "0.0.0",
+    "description": "",
+    "keywords": [],
+    "homepage": "https://github.com/electrovir/node-js-heap-size-experiments",
+    "bugs": {
+        "url": "https://github.com/electrovir/node-js-heap-size-experiments/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/electrovir/node-js-heap-size-experiments"
+    },
+    "license": "(MIT or CC0 1.0)",
+    "author": {
+        "name": "electrovir",
+        "url": "https://github.com/electrovir"
+    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "virmator frontend build",
+        "compile": "rm -rf dist && virmator compile",
+        "dev": "nodemon --quiet --exec node --max_old_space_size=1024 -r ts-node/register/transpile-only  src/entry-scripts/use-all-heap.ts",
+        "docs:update": "virmator code-in-markdown",
+        "format": "virmator format",
+        "preview": "virmator frontend preview",
+        "publish": "virmator publish \"npm run compile && npm run test:all\"",
+        "start": "node --max_old_space_size=1024 -r ts-node/register/transpile-only  src/entry-scripts/use-all-heap.ts",
+        "test": "virmator test",
+        "test:all": "npm run test:types && npm run test:coverage && npm run test:spelling && npm run test:format && npm run test:docs",
+        "test:coverage": "npm run test coverage",
+        "test:docs": "virmator code-in-markdown check",
+        "test:format": "virmator format check",
+        "test:spelling": "virmator spellcheck",
+        "test:types": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@augment-vir/common": "^13.2.3",
+        "@augment-vir/node-js": "^13.2.3"
+    },
+    "devDependencies": {
+        "@types/node": "^18.15.11",
+        "nodemon": "^2.0.22",
+        "prettier": "^2.8.7",
+        "prettier-plugin-interpolated-html-tags": "^0.0.3",
+        "prettier-plugin-jsdoc": "^0.4.2",
+        "prettier-plugin-multiline-arrays": "^1.1.3",
+        "prettier-plugin-organize-imports": "^3.2.2",
+        "prettier-plugin-packagejson": "^2.4.3",
+        "prettier-plugin-sort-json": "^1.0.0",
+        "prettier-plugin-toml": "^0.3.1",
+        "virmator": "^6.3.3"
+    }
+}
